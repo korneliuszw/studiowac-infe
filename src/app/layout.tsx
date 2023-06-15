@@ -1,5 +1,6 @@
 import './globals.css'
 import {Inter} from 'next/font/google'
+import clsx from "clsx";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -14,11 +15,11 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en" data-theme={"forest"}>
+        <html lang="pl" data-theme={"retro"}>
         <head>
             <meta name="viewport" content={"initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1"}/>
         </head>
-        <body className={inter.className}>
+        <body className={clsx(inter.className, 'bg-base-100', 'min-w-screen min-h-screen m-0')}>
         {children}
         </body>
         </html>

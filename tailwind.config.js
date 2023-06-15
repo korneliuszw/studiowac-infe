@@ -16,7 +16,8 @@ module.exports = {
     },
     daisyui: {
         themes: [
-            'forest'
+            'retro',
+            'synthwave'
         ]
     },
     plugins: [
