@@ -1,4 +1,5 @@
 Plik określający wzory matematyczne obliczające punkty rekrutacyjne dla danych uczelni.
+Linie wzoru muszą być oddzielone średnikiem!
 
 # Zmienne do wzorów
 
