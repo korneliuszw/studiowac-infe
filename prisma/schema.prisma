@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model University {
+  id                Int                 @id @default(autoincrement())
+  name              String
+  city              String
+  facultyAddress    String
+  universitySubject UniversitySubject[]
+}
+
+model UniversitySubject {
+  id                     Int        @id @default(autoincrement())
+  name                   String
+  universityId           Int
+  university             University @relation(fields: [universityId], references: [id])
+  facultyName            String
+  // Recrutation formula may use following variables
+  // maths_primary, maths_extended
+  // polish_primary, polish_extended
+  // english_primary, english_extended (use for secondary languages)
+  // physics_extended
+  // computerScience_extended
+  // inf02_primary (theory), inf02_extended (practice)
+  // inf03_primary (theory), inf03_extended (practice0
+  // exams (100 if passed, 0 if not)
+  // use those variables in formulas, with fParser standard ex. [physics_extended]
+  recrutationFormula     String
+  lastKnownMinPoints     Int
+  previousKnownMinPoints Int        @default(0)
+}
