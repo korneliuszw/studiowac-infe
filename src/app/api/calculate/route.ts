@@ -53,6 +53,7 @@ export const calculateSever = async (rawBody: any): Promise<CalculationResultIte
             city: true,
             universitySubject: {
                 select: {
+                    id: true,
                     name: true,
                     recrutationFormula: true,
                     lastKnownMinPoints: true,
@@ -63,7 +64,7 @@ export const calculateSever = async (rawBody: any): Promise<CalculationResultIte
     })
     return universities.reduce((universityReducer: CalculationResultItem[], university) => {
         const subjects = university.universitySubject.reduce((reducer: CalculationResultSubject[], subject) => {
-            const points = calculateSubjectPoints(subject.recrutationFormula, body)
+            const points = calculateSubjectPoints(subject.id, subject.recrutationFormula, body)
             const chance = getSubjectChance(points, subject.lastKnownMinPoints, subject.previousKnownMinPoints)
             if (chance) {
                 reducer.push({

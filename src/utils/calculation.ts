@@ -1,8 +1,11 @@
 import {CalculationRequestBody} from "@/app/api/calculate/route";
-import {evaluate, max} from "mathjs";
+import {compile, EvalFunction, max} from "mathjs";
 
-export const calculateSubjectPoints = (recrutationFormula: string, points: CalculationRequestBody) => {
-    const value = evaluate(recrutationFormula, {
+export const calculationCache: Record<number, EvalFunction> = {}
+
+export const calculateSubjectPoints = (subjectId: number, recrutationFormula: string, points: CalculationRequestBody) => {
+    if (!calculationCache[subjectId]) calculationCache[subjectId] = compile(recrutationFormula)
+    const value = calculationCache[subjectId].evaluate({
         ...points,
         ...points.exams,
         selection_extended: max(points.computerScience_extended, points.physics_extended),
