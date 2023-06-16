@@ -3,9 +3,19 @@ import {compile, EvalFunction, max} from "mathjs";
 
 export const calculationCache: Record<number, EvalFunction> = {}
 
+
+const getCompiledExpression = (subjectId: number, recrutationFormula: string) => {
+    if (process.env.NODE_ENV === "production") {
+        if (!calculationCache[subjectId]) calculationCache[subjectId] = compile(recrutationFormula)
+        return calculationCache[subjectId]
+    }
+    return compile(recrutationFormula)
+}
+
+
 export const calculateSubjectPoints = (subjectId: number, recrutationFormula: string, points: CalculationRequestBody) => {
-    if (!calculationCache[subjectId]) calculationCache[subjectId] = compile(recrutationFormula)
-    const value = calculationCache[subjectId].evaluate({
+    const expression = getCompiledExpression(subjectId, recrutationFormula)
+    const value = expression.evaluate({
         ...points,
         ...points.exams,
         selection_extended: max(points.computerScience_extended, points.physics_extended),

@@ -76,7 +76,7 @@ export const calculateSever = async (rawBody: any): Promise<CalculationResultIte
             }
             return reducer
         }, [])
-        if (subjects) {
+        if (subjects.length) {
             universityReducer.push({
                 universityName: university.name,
                 universityCity: university.city,
