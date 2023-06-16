@@ -1,6 +1,7 @@
 import './globals.css'
 import {Inter} from 'next/font/google'
 import clsx from "clsx";
+import Providers from "@/components/Providers";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -20,7 +21,9 @@ export default function RootLayout({
             <meta name="viewport" content={"initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1"}/>
         </head>
         <body className={clsx(inter.className, 'bg-base-100', 'min-w-screen min-h-screen m-0')}>
-        {children}
+        <Providers>
+            {children}
+        </Providers>
         </body>
         </html>
     )

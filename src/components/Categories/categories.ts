@@ -3,6 +3,7 @@ export type Categories = Record<string, CalculatorCategory>
 export interface CalculatorCategory {
     label: string;
     required?: boolean;
+    requiredExtended?: boolean;
     onlyExtended?: boolean;
     fields?: Categories;
     ask?: boolean;
@@ -40,12 +41,16 @@ export const categories: Categories = {
             'inf02': {
                 label: 'Egzamin INF-02',
                 labelPrimary: 'Teoria',
-                labelExtended: 'Praktyka'
+                labelExtended: 'Praktyka',
+                required: true,
+                requiredExtended: true
             },
             'inf03': {
                 label: 'Egzamin INF-03',
                 labelPrimary: 'Teoria',
-                labelExtended: 'Praktyka'
+                labelExtended: 'Praktyka',
+                required: true,
+                requiredExtended: true
             },
         }
     }

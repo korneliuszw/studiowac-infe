@@ -17,6 +17,7 @@ export default function Category({
                                          onlyExtended,
                                          fields,
                                          required,
+                                         requiredExtended
                                      },
                                      categoryKey
                                  }: CategoryProps) {
@@ -27,10 +28,10 @@ export default function Category({
             <p className={"text-base-content"}>{label}</p>
             {!onlyExtended ?
                 <PrimaryInput required={required} type={"number"} placeholder={labelPrimary ?? "Podstawa"}
-                              name={`${categoryKey}-primary`}/>
+                              name={`${categoryKey}_primary`}/>
                 : <div/>}
-            <PrimaryInput type={"number"} placeholder={labelExtended ?? "Rozszerzenie"}
-                          name={`${categoryKey}-extended`}/>
+            <PrimaryInput required={requiredExtended} type={"number"} placeholder={labelExtended ?? "Rozszerzenie"}
+                          name={`${categoryKey}_extended`}/>
         </>
     )
 }
