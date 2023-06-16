@@ -47,7 +47,7 @@ avg(x, y) = ceil((x + y) / 2);
 2 * maths_primary + 3 * g(max(selection_extended, maths_extended)) + g(max(selection_extended, maths_extended, avg(
 inf02_primary, inf02_extended), avg(inf03_primary, inf03_extended)))
 
-## Wzor drugi
+### Wzor drugi
 
 Stosowany do:
 
@@ -57,3 +57,30 @@ Stosowany do:
 2 * maths_primary + 3 * (maths_extended < 30 ? maths_extended : maths_extended <= 80 ? maths_extended + 2 * (
 maths_extended - 30) : maths_extended + 100) + (selection_extended < 30 ? selection_extended : selection_extended <=
 80 ? selection_extended + 2 * (selection_extended - 30) : selection_extended + 100)
+
+## Politechnika Wrocławska
+
+### Wzor pierwszy
+
+Stosowany do:
+
+- Cyberbezpieczeństwo
+- Informatyczne systemy automatyki
+
+p(primary, extended) = max(primary, primary + 1.5 * extended, 2.5 * extended);
+z = (0.3*inf02_primary + 0.7 * inf02_extended + 0.3 * inf03_primary + 0.7 * inf03_extended) / 2;
+p(maths_primary, maths_extended) + max(0.5 * z, 2.5 * selection_extended) + 0.1 * p(english_primary, english_extended) +
+0.1 * max(polish_primary, polish_extended)
+
+### Wzor drugi
+
+Stosowany do:
+
+- Informatyka techniczna
+- Inżyniera systemów
+- Informatyka algorytmiczna
+- Informatyka stosowana
+
+p(primary, extended) = max(primary, primary + 1.5 * extended, 2.5 * extended);
+p(maths_primary, maths_extended) + 2.5 * selection_extended + 0.1 * p(english_primary, english_extended) + 0.1 * max(
+polish_primary, polish_extended) 
