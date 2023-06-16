@@ -35,6 +35,7 @@ type CalculationResultSubject = {
     chance: "medium" | "high"
     lastKnownMinPoints: number;
     previousKnownMinPoints: number;
+    points: number;
 }
 export type CalculationResultItem = {
     universityName: string;
@@ -71,7 +72,8 @@ export const calculateSever = async (rawBody: any): Promise<CalculationResultIte
                     subjectName: subject.name,
                     chance,
                     lastKnownMinPoints: subject.lastKnownMinPoints,
-                    previousKnownMinPoints: subject.previousKnownMinPoints
+                    previousKnownMinPoints: subject.previousKnownMinPoints,
+                    points
                 })
             }
             return reducer
