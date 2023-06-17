@@ -105,3 +105,39 @@ avg(x, y) = round((x + y) / 2);
 ex(x, y) = round(0.3 * x + 0.7 * y);
 0.5 * maths_primary + max(0.75 * avg(ex(inf02_primary, inf02_extended), ex(inf03_primary, inf03_extended)), selection_extended, maths_extended)
 ```
+
+## Politechnika Warszawska
+
+### Wzor pierwszy
+
+Stosowany do:
+
+- Informatyka (ETI)
+- Informatyka i Systemy informacyjne
+- Inżynieria Internetu rzeczy
+
+```js
+max(0.5 * maths_primary, maths_extended) + selection_extended + 0.25 * max(0.5 * english_primary, english_extended)
+```
+
+### Wzor drugi
+
+Stosowany do:
+
+- Informatyka stosowana
+
+```js
+avg(x, y) = ceil((x + y) / 2);
+ex(x, y) = round(0.3 * x + 0.7 * y);
+max(0.5 * maths_primary, maths_extended) + max(0.75 * avg(ex(inf02_primary, inf02_extended), ex(inf03_primary, inf03_extended)), selection_extended) + 0.25 * max(0.5 * english_primary, english_extended)
+```
+
+### Wzor trzeci
+
+Stosowany do:
+
+- Inżyniera i analiza danych
+
+```js
+1.25 * max(0.5 * maths_primary, maths_extended) + 0.75 * selection_extended + 0.25 * max(0.5 * english_primary, english_extended)
+```
