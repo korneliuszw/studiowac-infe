@@ -1,10 +1,11 @@
 import {processCalculationSearchParams} from "@/utils/queryProcessor";
 import {calculateSever} from "@/app/api/calculate/route";
+import {getAllUniveritiesServer} from "@/app/api/universities/route";
 
 
 export default async function Results({searchParams}: { searchParams: any }) {
     const params = processCalculationSearchParams(searchParams)
-    const passed = await calculateSever(params)
+    const [passed, universities] = await Promise.all([calculateSever(params), getAllUniveritiesServer()])
     return (
         <main className={"container m-auto"}>
             {passed.map(university => {
@@ -44,6 +45,16 @@ export default async function Results({searchParams}: { searchParams: any }) {
                     </div>
                 )
             })}
+            <ol className={"list-disc text-sm"}>
+                Aktualnie znane uniwersytety:
+                {universities.map(university => <li>{university.name}</li>)}
+            </ol>
+            <div className={"text-end ml-auto max-w-prose whitespace-pre-wrap text-sm font-light"}>
+                Brane pod uwagę są dwa poprzednie znane progi punktowe. Brak uczelni lub kierunku na liście oznacza, że
+                wynik
+                mieści się
+                poniżej tych progów. <br/>Uczelnie posortowane są według pozycji w rankingu perspektyw
+            </div>
         </main>
     )
 
