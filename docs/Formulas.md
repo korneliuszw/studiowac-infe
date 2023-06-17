@@ -97,3 +97,11 @@ p(primary, extended) = max(primary, primary + 1.5 * extended, 2.5 * extended);
 p(maths_primary, maths_extended) + 2.5 * selection_extended + 0.1 * p(english_primary, english_extended) + 0.1 * max(
     polish_primary, polish_extended) 
 ```
+
+## Politechnika Śląska
+
+```js
+avg(x, y) = round((x + y) / 2);
+ex(x, y) = round(0.3 * x + 0.7 * y);
+0.5 * maths_primary + max(0.75 * avg(ex(inf02_primary, inf02_extended), ex(inf03_primary, inf03_extended)), selection_extended, maths_extended)
+```
