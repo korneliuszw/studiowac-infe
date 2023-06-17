@@ -47,7 +47,7 @@ export default async function Results({searchParams}: { searchParams: any }) {
             })}
             <ol className={"list-disc text-sm"}>
                 Aktualnie znane uniwersytety:
-                {universities.map(university => <li>{university.name}</li>)}
+                {universities.map(university => <li key={university.name}>{university.name}</li>)}
             </ol>
             <div className={"text-end ml-auto max-w-prose whitespace-pre-wrap text-sm font-light"}>
                 Brane pod uwagę są dwa poprzednie znane progi punktowe. Brak uczelni lub kierunku na liście oznacza, że
