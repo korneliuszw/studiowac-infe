@@ -149,3 +149,9 @@ avg(x, y) = ceil((x + y) / 2);
 ex(x, y) = round(0.3 * x + 0.7 * y);
 6 * max(0.5 * maths_primary, maths_extended) + 2 * max(0.5 * english_primary, english_extended) + 4 * max(selection_extended, avg(ex(inf02_primary, inf02_extended), ex(inf03_primary, inf03_extended)))
 ```
+
+## Politechnika Koszalińska
+
+```js
+2 * (maths_extended + polish_extended + english_extended + physics_extended + computerScience_extended) + (maths_primary + polish_primary + english_primary)
+```
