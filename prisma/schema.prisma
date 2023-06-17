@@ -16,6 +16,7 @@ model University {
   city              String
   facultyAddress    String
   universitySubject UniversitySubject[]
+  perspektywyRating Int                 @default(99)
 }
 
 model UniversitySubject {

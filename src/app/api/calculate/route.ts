@@ -61,6 +61,9 @@ export const calculateSever = async (rawBody: any): Promise<CalculationResultIte
                     previousKnownMinPoints: true
                 }
             }
+        },
+        orderBy: {
+            perspektywyRating: "asc"
         }
     })
     return universities.reduce((universityReducer: CalculationResultItem[], university) => {
