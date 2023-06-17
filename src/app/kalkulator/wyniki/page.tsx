@@ -1,6 +1,6 @@
 import {processCalculationSearchParams} from "@/utils/queryProcessor";
-import {calculateSever} from "@/app/api/calculate/route";
-import {getAllUniveritiesServer} from "@/app/api/universities/route";
+import {calculateSever} from "@/app/apiFunctions/calculate";
+import {getAllUniveritiesServer} from "@/app/apiFunctions/getUniversities";
 
 
 export default async function Results({searchParams}: { searchParams: any }) {

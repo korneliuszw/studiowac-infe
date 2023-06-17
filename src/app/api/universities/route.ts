@@ -1,10 +1,6 @@
-import {cache} from "react";
-import universities from '../university.json'
+import {NextResponse} from "next/server";
+import {getAllUniveritiesServer} from "@/app/apiFunctions/getUniversities";
 
-export const getAllUniveritiesServer = cache(() => {
-    return universities.map(university => {
-        return {
-            name: university.name
-        }
-    })
-})
+export default async function GET() {
+    return NextResponse.json(await getAllUniveritiesServer())
+}

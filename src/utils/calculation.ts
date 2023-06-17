@@ -1,5 +1,5 @@
-import {CalculationRequestBody} from "@/app/api/calculate/route";
 import {compile, EvalFunction, max} from "mathjs";
+import {CalculationRequestBody} from "@/app/apiFunctions/calculate";
 
 export const calculationCache: Record<number, EvalFunction> = {}
 
