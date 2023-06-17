@@ -39,9 +39,27 @@ export type CalculationResultItem = {
     universityId: number;
     subjects: CalculationResultSubject[]
 }
+
+type UniversitySubject = {
+    id: number;
+    name: string;
+    facultyName: string;
+    recrutationFormula: string;
+    lastKnownMinPoints: number;
+    previousKnownMinPoints: number;
+}
+type University = {
+    id: number;
+    name: string;
+    city: string;
+    facultyAddress: string;
+    perspektywyRating: number;
+    universitySubjects: UniversitySubject[]
+}
+
 export const calculateSever = async (rawBody: any): Promise<CalculationResultItem[]> => {
     const body = await schema.parseAsync(rawBody)
-    return universities.reduce((universityReducer: CalculationResultItem[], university) => {
+    return universities.reduce((universityReducer: CalculationResultItem[], university: University) => {
         const subjects = university.universitySubjects.reduce((reducer: CalculationResultSubject[], subject) => {
             const points = calculateSubjectPoints(subject.id, subject.recrutationFormula, body)
             const chance = getSubjectChance(points, subject.lastKnownMinPoints, subject.previousKnownMinPoints)
