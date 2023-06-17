@@ -1,9 +1,10 @@
-import {prisma} from "@/db";
+import {cache} from "react";
+import universities from '../university.json'
 
-export const getAllUniveritiesServer = () => {
-    return prisma.university.findMany({
-        select: {
-            name: true
+export const getAllUniveritiesServer = cache(() => {
+    return universities.map(university => {
+        return {
+            name: university.name
         }
     })
-}
+})

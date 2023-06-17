@@ -1,7 +1,7 @@
+import universities from '../university.json'
 import {NextRequest, NextResponse} from "next/server";
 import {z} from "zod";
 import {numericString} from "@/utils/zod";
-import {prisma} from "@/db";
 import {calculateSubjectPoints, getSubjectChance} from "@/utils/calculation";
 
 
@@ -46,28 +46,8 @@ export type CalculationResultItem = {
 
 export const calculateSever = async (rawBody: any): Promise<CalculationResultItem[]> => {
     const body = await schema.parseAsync(rawBody)
-    console.log(body)
-    const universities = await prisma.university.findMany({
-        select: {
-            name: true,
-            id: true,
-            city: true,
-            universitySubject: {
-                select: {
-                    id: true,
-                    name: true,
-                    recrutationFormula: true,
-                    lastKnownMinPoints: true,
-                    previousKnownMinPoints: true
-                }
-            }
-        },
-        orderBy: {
-            perspektywyRating: "asc"
-        }
-    })
     return universities.reduce((universityReducer: CalculationResultItem[], university) => {
-        const subjects = university.universitySubject.reduce((reducer: CalculationResultSubject[], subject) => {
+        const subjects = university.universitySubjects.reduce((reducer: CalculationResultSubject[], subject) => {
             const points = calculateSubjectPoints(subject.id, subject.recrutationFormula, body)
             const chance = getSubjectChance(points, subject.lastKnownMinPoints, subject.previousKnownMinPoints)
             if (chance) {
