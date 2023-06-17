@@ -32,7 +32,7 @@ export type CalculationRequestBody = z.infer<typeof schema>
 
 type CalculationResultSubject = {
     subjectName: string;
-    chance: "medium" | "high"
+    chance: "medium" | "high" | "unknown"
     lastKnownMinPoints: number;
     previousKnownMinPoints: number;
     points: number;

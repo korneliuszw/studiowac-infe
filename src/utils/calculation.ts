@@ -27,7 +27,8 @@ export const calculateSubjectPoints = (subjectId: number, recrutationFormula: st
     return value
 }
 export const getSubjectChance = (subjectPoints: number, lastKnownMinPoints: number, previousKnownMinPoints: number) => {
-    if (subjectPoints >= lastKnownMinPoints) return "high"
+    if (!lastKnownMinPoints && !previousKnownMinPoints) return "unknown"
+    else if (subjectPoints >= lastKnownMinPoints) return "high"
     else if (subjectPoints >= previousKnownMinPoints) return "medium"
     return null
 }

@@ -4,9 +4,7 @@ import {calculateSever} from "@/app/api/calculate/route";
 
 export default async function Results({searchParams}: { searchParams: any }) {
     const params = processCalculationSearchParams(searchParams)
-    console.log(params)
     const passed = await calculateSever(params)
-    console.log(passed)
     return (
         <main className={"container m-auto"}>
             {passed.map(university => {
@@ -33,10 +31,10 @@ export default async function Results({searchParams}: { searchParams: any }) {
                                     return (
                                         <tr key={subject.subjectName}>
                                             <td>{subject.subjectName}</td>
-                                            <td>{subject.chance === "high" ? "Wysoka" : "Średnia"}</td>
+                                            <td>{subject.chance === "unknown" ? "Nieznana" : subject.chance === "high" ? "Wysoka" : "Średnia"}</td>
                                             <td>{subject.points}</td>
-                                            <td>{subject.lastKnownMinPoints}</td>
-                                            <td>{subject.previousKnownMinPoints}</td>
+                                            <td>{subject.lastKnownMinPoints || "-"}</td>
+                                            <td>{subject.previousKnownMinPoints || "-"}</td>
                                         </tr>
                                     )
                                 })}
