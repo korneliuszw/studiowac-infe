@@ -1,22 +1,8 @@
 import {compile, EvalFunction, max} from "mathjs";
 import {CalculationRequestBody} from "@/app/apiFunctions/calculate";
-import universities from "@/app/api/university.json";
 
-export const calculationCache: Record<number, EvalFunction> = {};
+export const calculationCache: Record<number, EvalFunction> = {}
 
-(() => {
-    // We don't want to run this AFTER the build!
-    // So check if first record is already set, if not, we are in production
-    // Do not call Object.keys() as it might be too slow
-    if (process.env.NODE_ENV === "production" && !calculationCache[1]) {
-        console.debug('Seeding calculation cache')
-        for (const university of universities) {
-            for (const subject of university.universitySubjects) {
-                getCompiledExpression(subject.id, subject.recrutationFormula)
-            }
-        }
-    }
-})
 
 const getCompiledExpression = (subjectId: number, recrutationFormula: string) => {
     if (process.env.NODE_ENV === "production") {
