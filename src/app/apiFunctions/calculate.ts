@@ -18,12 +18,7 @@ export const schema = z.object({
         'inf02_extended': numericString(z.number().max(100).min(75)),
         'inf03_primary': numericString(z.number().max(100).min(50)),
         'inf03_extended': numericString(z.number().max(100).min(75)),
-    }).optional().default({
-        inf02_extended: 0,
-        inf02_primary: 0,
-        inf03_extended: 0,
-        inf03_primary: 0
-    })
+    }).optional()
 })
 export type CalculationRequestBody = z.infer<typeof schema>
 type CalculationResultSubject = {

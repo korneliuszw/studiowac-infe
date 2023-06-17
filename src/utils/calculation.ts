@@ -17,7 +17,12 @@ export const calculateSubjectPoints = (subjectId: number, recrutationFormula: st
     const expression = getCompiledExpression(subjectId, recrutationFormula)
     const value = expression.evaluate({
         ...points,
-        ...points.exams,
+        ...(points.exams ?? {
+            inf02_primary: 0,
+            inf02_extended: 0,
+            inf03_extended: 0,
+            inf03_primary: 0
+        }),
         selection_extended: max(points.computerScience_extended, points.physics_extended),
         exams: points.exams ? 100 : 0
     })

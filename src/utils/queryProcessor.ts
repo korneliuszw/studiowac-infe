@@ -1,5 +1,4 @@
 export const processCalculationSearchParams = (searchParams: Record<string, any>) => {
-    console.log(searchParams)
     const {
         inf03_primary,
         inf03_extended,
