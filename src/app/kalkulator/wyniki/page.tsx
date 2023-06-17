@@ -12,7 +12,7 @@ export default async function Results({searchParams}: { searchParams: any }) {
                     <div key={university.universityName}
                          className={"collapse collapse-arrow overflow-visible relative w-full"}>
                         <input type={"checkbox"} className={"z-30"}/>
-                        <div className={"collapse-title text-xl font-medium sticky z-20 top-0 bg-accent"}>
+                        <div className={"collapse-title text-xl font-medium sticky z-20 top-0 bg-base-300"}>
                             {university.universityName}
                         </div>
                         <div className={"collapse-content overflow-x-auto"}>
