@@ -1,45 +1,55 @@
 [
   {
-    "id": 1,
-    "name": "Politechnika Gdańska",
-    "city": "Gdańsk",
-    "facultyAddress": "Gdańsk",
-    "perspektywyRating": 6,
+    "id": 7,
+    "name": "Politechnika Warszawska",
+    "city": "Warszawa",
+    "facultyAddress": "Warszawa",
+    "perspektywyRating": 3,
     "universitySubjects": [
       {
-        "id": 1,
-        "name": "Informatyka",
-        "facultyName": "Wydział Elektroniki, Telekomunikacji i Informatyki",
-        "recrutationFormula": "max(maths_primary * 0.4, maths_extended) + max(physics_extended, computerScience_extended) + (0.1 * max(polish_primary * 0.4, polish_extended)) + (0.1 * max(english_primary * 0.4, english_extended))  + min(exams, 30)",
-        "lastKnownMinPoints": 150,
-        "previousKnownMinPoints": 157
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Politechnika Poznańska",
-    "city": "Poznań",
-    "facultyAddress": "Poznań",
-    "perspektywyRating": 23,
-    "universitySubjects": [
-      {
-        "id": 2,
-        "name": "Informatyka",
-        "universityId": 2,
-        "facultyName": "Wydział Informatyki i Telekomunikacji",
-        "recrutationFormula": "0.5 * polish_primary + 0.5 * english_primary + 2.5 * (maths_primary + maths_extended) + max(2 * ((0.3 * inf02_primary + 0.7 * inf02_extended) + (0.3 * inf03_primary + 0.7 * inf03_extended)), 2 * ((selection_extended > 29 ? (0.5 * selection_extended + 50) :  (2 * selection_extended)) + selection_extended))",
-        "lastKnownMinPoints": 838,
-        "previousKnownMinPoints": 783
+        "id": 17,
+        "name": "Informatyka i systemy informacyjne",
+        "universityId": 7,
+        "facultyName": "Wydział Matematyki i Nauk informacyjnych",
+        "recrutationFormula": "max(0.5 * maths_primary, maths_extended) +  selection_extended + 0.25 * max(0.5 * english_primary, english_extended)",
+        "lastKnownMinPoints": 208,
+        "previousKnownMinPoints": 201
       },
       {
-        "id": 3,
-        "name": "Artifical Intelligence",
-        "universityId": 2,
-        "facultyName": "Wydział Informatyki i Telekomunikacji",
-        "recrutationFormula": "0.5 * polish_primary + 0.5 * english_primary + 2.5 * (maths_primary + maths_extended) + max(2 * ((0.3 * inf02_primary + 0.7 * inf02_extended) + (0.3 * inf03_primary + 0.7 * inf03_extended)), 2 * ((selection_extended > 29 ? (0.5 * selection_extended + 50) :  (2 * selection_extended)) + selection_extended))",
-        "lastKnownMinPoints": 903,
-        "previousKnownMinPoints": 856
+        "id": 18,
+        "name": "Informatyka (ETI)",
+        "universityId": 7,
+        "facultyName": "Wydział Elektroniki i Technik informatycznych",
+        "recrutationFormula": "max(0.5 * maths_primary, maths_extended) +  selection_extended + 0.25 * max(0.5 * english_primary, english_extended)",
+        "lastKnownMinPoints": 200,
+        "previousKnownMinPoints": 193
+      },
+      {
+        "id": 19,
+        "name": "Inżyniera i analiza danych",
+        "universityId": 7,
+        "facultyName": "Wydział Matematyki i Nauk informacyjnych",
+        "recrutationFormula": "1.25 * max(0.5 * maths_primary, maths_extended) +  0.75 * selection_extended + 0.25 * max(0.5 * english_primary, english_extended)",
+        "lastKnownMinPoints": 207,
+        "previousKnownMinPoints": 197
+      },
+      {
+        "id": 20,
+        "name": "Informatyka stosowana",
+        "universityId": 7,
+        "facultyName": "Wydział Elektryczny",
+        "recrutationFormula": "avg(x, y) = ceil((x + y) / 2); ex(x, y) = round(0.3 * x + 0.7 * y); max(0.5 * maths_primary, maths_extended) +  max(0.75 * avg(ex(inf02_primary, inf02_extended), ex(inf03_primary, inf03_extended)), selection_extended) + 0.25 * max(0.5 * english_primary, english_extended)",
+        "lastKnownMinPoints": 181,
+        "previousKnownMinPoints": 190
+      },
+      {
+        "id": 21,
+        "name": "Inżynieria Internetu Rzeczy",
+        "universityId": 7,
+        "facultyName": "Wydział Elektroniki i Technik informatycznych",
+        "recrutationFormula": "max(0.5 * maths_primary, maths_extended) +  selection_extended + 0.25 * max(0.5 * english_primary, english_extended)",
+        "lastKnownMinPoints": 188,
+        "previousKnownMinPoints": 188
       }
     ]
   },
@@ -73,6 +83,23 @@
         "recrutationFormula": "g(x) = x < 30 ? x : x <= 80 ? x + 2 * (x - 30) : x + 100;  max(selection_extended, maths_extended); avg(x, y) = ceil((x + y) / 2); 2 * maths_primary + 3 * g(max(selection_extended, maths_extended)) + g(max(selection_extended, maths_extended, avg(inf02_primary, inf02_extended), avg(inf03_primary, inf03_extended)))",
         "lastKnownMinPoints": 972,
         "previousKnownMinPoints": 961
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Politechnika Gdańska",
+    "city": "Gdańsk",
+    "facultyAddress": "Gdańsk",
+    "perspektywyRating": 6,
+    "universitySubjects": [
+      {
+        "id": 1,
+        "name": "Informatyka",
+        "facultyName": "Wydział Elektroniki, Telekomunikacji i Informatyki",
+        "recrutationFormula": "max(maths_primary * 0.4, maths_extended) + max(physics_extended, computerScience_extended) + (0.1 * max(polish_primary * 0.4, polish_extended)) + (0.1 * max(english_primary * 0.4, english_extended))  + min(exams, 30)",
+        "lastKnownMinPoints": 150,
+        "previousKnownMinPoints": 157
       }
     ]
   },
@@ -142,20 +169,29 @@
     ]
   },
   {
-    "id": 5,
-    "name": "Politechnika Koszalińska",
-    "city": "Koszalin",
-    "facultyAddress": "Koszalin",
-    "perspektywyRating": 61,
+    "id": 8,
+    "name": "Politechnika Łódzka",
+    "city": "Łódź",
+    "facultyAddress": "Łódź",
+    "perspektywyRating": 10,
     "universitySubjects": [
       {
-        "id": 24,
+        "id": 22,
         "name": "Informatyka",
-        "universityId": 5,
-        "facultyName": "Wydział Elektroniki i Informatyki",
-        "recrutationFormula": "2 * (maths_extended + polish_extended + english_extended + physics_extended + computerScience_extended)  + (maths_primary + polish_primary + english_primary)",
-        "lastKnownMinPoints": 115,
-        "previousKnownMinPoints": 115
+        "universityId": 8,
+        "facultyName": "Wydział Elektrotechniki, Elektroniki, Informatyki i Automatyki",
+        "recrutationFormula": "avg(x, y) = ceil((x + y) / 2); ex(x, y) = round(0.3 * x + 0.7 * y); 6 * max(0.5 * maths_primary, maths_extended) + 2 * max(0.5 * english_primary, english_extended) + 4 * max(selection_extended, avg(ex(inf02_primary, inf02_extended), ex(inf03_primary, inf03_extended)))",
+        "lastKnownMinPoints": 230,
+        "previousKnownMinPoints": 204
+      },
+      {
+        "id": 23,
+        "name": "Informatyka stosowana",
+        "universityId": 8,
+        "facultyName": "Wydział Fizyki Technicznej, Informatyki i Matematyki Stosowanej",
+        "recrutationFormula": "avg(x, y) = ceil((x + y) / 2); ex(x, y) = round(0.3 * x + 0.7 * y); 6 * max(0.5 * maths_primary, maths_extended) + 2 * max(0.5 * english_primary, english_extended) + 4 * max(selection_extended, avg(ex(inf02_primary, inf02_extended), ex(inf03_primary, inf03_extended)))",
+        "lastKnownMinPoints": 243,
+        "previousKnownMinPoints": 233
       }
     ]
   },
@@ -193,83 +229,47 @@
     ]
   },
   {
-    "id": 7,
-    "name": "Politechnika Warszawska",
-    "city": "Warszawa",
-    "facultyAddress": "Warszawa",
-    "perspektywyRating": 3,
+    "id": 2,
+    "name": "Politechnika Poznańska",
+    "city": "Poznań",
+    "facultyAddress": "Poznań",
+    "perspektywyRating": 23,
     "universitySubjects": [
       {
-        "id": 17,
-        "name": "Informatyka i systemy informacyjne",
-        "universityId": 7,
-        "facultyName": "Wydział Matematyki i Nauk informacyjnych",
-        "recrutationFormula": "max(0.5 * maths_primary, maths_extended) +  selection_extended + 0.25 * max(0.5 * english_primary, english_extended)",
-        "lastKnownMinPoints": 208,
-        "previousKnownMinPoints": 201
+        "id": 2,
+        "name": "Informatyka",
+        "universityId": 2,
+        "facultyName": "Wydział Informatyki i Telekomunikacji",
+        "recrutationFormula": "0.5 * polish_primary + 0.5 * english_primary + 2.5 * (maths_primary + maths_extended) + max(2 * ((0.3 * inf02_primary + 0.7 * inf02_extended) + (0.3 * inf03_primary + 0.7 * inf03_extended)), 2 * ((selection_extended > 29 ? (0.5 * selection_extended + 50) :  (2 * selection_extended)) + selection_extended))",
+        "lastKnownMinPoints": 838,
+        "previousKnownMinPoints": 783
       },
       {
-        "id": 18,
-        "name": "Informatyka (ETI)",
-        "universityId": 7,
-        "facultyName": "Wydział Elektroniki i Technik informatycznych",
-        "recrutationFormula": "max(0.5 * maths_primary, maths_extended) +  selection_extended + 0.25 * max(0.5 * english_primary, english_extended)",
-        "lastKnownMinPoints": 200,
-        "previousKnownMinPoints": 193
-      },
-      {
-        "id": 19,
-        "name": "Inżyniera i analiza danych",
-        "universityId": 7,
-        "facultyName": "Wydział Matematyki i Nauk informacyjnych",
-        "recrutationFormula": "1.25 * max(0.5 * maths_primary, maths_extended) +  0.75 * selection_extended + 0.25 * max(0.5 * english_primary, english_extended)",
-        "lastKnownMinPoints": 207,
-        "previousKnownMinPoints": 197
-      },
-      {
-        "id": 20,
-        "name": "Informatyka stosowana",
-        "universityId": 7,
-        "facultyName": "Wydział Elektryczny",
-        "recrutationFormula": "avg(x, y) = ceil((x + y) / 2); ex(x, y) = round(0.3 * x + 0.7 * y); max(0.5 * maths_primary, maths_extended) +  max(0.75 * avg(ex(inf02_primary, inf02_extended), ex(inf03_primary, inf03_extended)), selection_extended) + 0.25 * max(0.5 * english_primary, english_extended)",
-        "lastKnownMinPoints": 181,
-        "previousKnownMinPoints": 190
-      },
-      {
-        "id": 21,
-        "name": "Inżynieria Internetu Rzeczy",
-        "universityId": 7,
-        "facultyName": "Wydział Elektroniki i Technik informatycznych",
-        "recrutationFormula": "max(0.5 * maths_primary, maths_extended) +  selection_extended + 0.25 * max(0.5 * english_primary, english_extended)",
-        "lastKnownMinPoints": 188,
-        "previousKnownMinPoints": 188
+        "id": 3,
+        "name": "Artifical Intelligence",
+        "universityId": 2,
+        "facultyName": "Wydział Informatyki i Telekomunikacji",
+        "recrutationFormula": "0.5 * polish_primary + 0.5 * english_primary + 2.5 * (maths_primary + maths_extended) + max(2 * ((0.3 * inf02_primary + 0.7 * inf02_extended) + (0.3 * inf03_primary + 0.7 * inf03_extended)), 2 * ((selection_extended > 29 ? (0.5 * selection_extended + 50) :  (2 * selection_extended)) + selection_extended))",
+        "lastKnownMinPoints": 903,
+        "previousKnownMinPoints": 856
       }
     ]
   },
   {
-    "id": 8,
-    "name": "Politechnika Łódzka",
-    "city": "Łódź",
-    "facultyAddress": "Łódź",
-    "perspektywyRating": 10,
+    "id": 5,
+    "name": "Politechnika Koszalińska",
+    "city": "Koszalin",
+    "facultyAddress": "Koszalin",
+    "perspektywyRating": 61,
     "universitySubjects": [
       {
-        "id": 22,
+        "id": 24,
         "name": "Informatyka",
-        "universityId": 8,
-        "facultyName": "Wydział Elektrotechniki, Elektroniki, Informatyki i Automatyki",
-        "recrutationFormula": "avg(x, y) = ceil((x + y) / 2); ex(x, y) = round(0.3 * x + 0.7 * y); 6 * max(0.5 * maths_primary, maths_extended) + 2 * max(0.5 * english_primary, english_extended) + 4 * max(selection_extended, avg(ex(inf02_primary, inf02_extended), ex(inf03_primary, inf03_extended)))",
-        "lastKnownMinPoints": 230,
-        "previousKnownMinPoints": 204
-      },
-      {
-        "id": 23,
-        "name": "Informatyka stosowana",
-        "universityId": 8,
-        "facultyName": "Wydział Fizyki Technicznej, Informatyki i Matematyki Stosowanej",
-        "recrutationFormula": "avg(x, y) = ceil((x + y) / 2); ex(x, y) = round(0.3 * x + 0.7 * y); 6 * max(0.5 * maths_primary, maths_extended) + 2 * max(0.5 * english_primary, english_extended) + 4 * max(selection_extended, avg(ex(inf02_primary, inf02_extended), ex(inf03_primary, inf03_extended)))",
-        "lastKnownMinPoints": 243,
-        "previousKnownMinPoints": 233
+        "universityId": 5,
+        "facultyName": "Wydział Elektroniki i Informatyki",
+        "recrutationFormula": "2 * (maths_extended + polish_extended + english_extended + physics_extended + computerScience_extended)  + (maths_primary + polish_primary + english_primary)",
+        "lastKnownMinPoints": 115,
+        "previousKnownMinPoints": 115
       }
     ]
   }
