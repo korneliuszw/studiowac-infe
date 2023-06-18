@@ -4,7 +4,8 @@ import universities from "@/../university.json";
 export const getAllUniveritiesServer = cache(() => {
     return universities.map(university => {
         return {
-            name: university.name
+            name: university.name,
+            city: university.city
         }
     })
 })
