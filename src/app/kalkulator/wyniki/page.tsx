@@ -20,6 +20,7 @@ export default async function Results({searchParams}: { searchParams: any }) {
                         </div>
                         <div className={"collapse-content overflow-x-auto"}>
                             <div className={"p-2 flex gap-2 flex-wrap"}>
+                                {/* @ts-expect-error Server Component */}
                                 <Prices city={university.universityCity}/>
                                 <Rating rating={university.perspektywyRating}/>
                             </div>
