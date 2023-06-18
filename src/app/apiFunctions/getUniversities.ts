@@ -1,5 +1,5 @@
 import {cache} from "react";
-import universities from "@/app/api/university.json";
+import universities from "@/../university.json";
 
 export const getAllUniveritiesServer = cache(() => {
     return universities.map(university => {

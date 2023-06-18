@@ -1,6 +1,6 @@
 import {z} from "zod";
 import {numericString} from "@/utils/zod";
-import universities from "@/app/api/university.json";
+import universities from "@/../university.json";
 import {calculateSubjectPoints, getSubjectChance} from "@/utils/calculation";
 
 export const schema = z.object({
