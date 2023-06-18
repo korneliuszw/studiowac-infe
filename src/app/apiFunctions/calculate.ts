@@ -33,6 +33,7 @@ export type CalculationResultItem = {
     universityCity: string;
     universityId: number;
     subjects: CalculationResultSubject[]
+    perspektywyRating: number;
 }
 
 type UniversitySubject = {
@@ -74,7 +75,8 @@ export const calculateSever = async (rawBody: any): Promise<CalculationResultIte
                 universityName: university.name,
                 universityCity: university.city,
                 universityId: university.id,
-                subjects
+                subjects,
+                perspektywyRating: university.perspektywyRating
             })
         }
         return universityReducer

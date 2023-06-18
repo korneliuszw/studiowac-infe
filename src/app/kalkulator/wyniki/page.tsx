@@ -1,6 +1,8 @@
 import {processCalculationSearchParams} from "@/utils/queryProcessor";
 import {calculateSever} from "@/app/apiFunctions/calculate";
 import {getAllUniveritiesServer} from "@/app/apiFunctions/getUniversities";
+import {Prices} from "@/components/Prices/Prices";
+import Rating from "@/components/Rating/Rating";
 
 
 export default async function Results({searchParams}: { searchParams: any }) {
@@ -17,6 +19,11 @@ export default async function Results({searchParams}: { searchParams: any }) {
                             {university.universityName}
                         </div>
                         <div className={"collapse-content overflow-x-auto"}>
+                            <div className={"p-2 flex gap-2 flex-wrap"}>
+                                <Prices city={university.universityCity}/>
+                                <Rating rating={university.perspektywyRating}/>
+                            </div>
+
                             <table className={"table table-zebra w-full mt-2"}>
                                 <thead>
                                 <tr>
