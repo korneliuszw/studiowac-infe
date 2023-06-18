@@ -17,11 +17,13 @@ const getAllUniversities = async (): Promise<University[]> => {
 const getBrowser = () => {
     if (process.env.NODE_ENV === 'production')
         return connect({browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_TOKEN}`})
-    return launch({headless: true})
+    return launch({headless: false})
 }
 
 const cityToScrap = (city: string) =>
-    `https://www.otodom.pl/pl/oferty/wynajem/pokoj/${city.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "")}?distanceRadius=0&limit=36&priceMin=1&by=DEFAULT&direction=DESC&viewType=listing`
+    `https://www.otodom.pl/pl/oferty/wynajem/pokoj/${city.toLowerCase().normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace("ł", "l")}?distanceRadius=0&limit=36&priceMin=1&by=DEFAULT&direction=DESC&viewType=listing`
 
 
 const pageHasCaptcha = (page: Page) => {
@@ -34,9 +36,15 @@ const scrollIntoView = async (selector: string, page: Page) => {
     }, selector)
 }
 
+const isCorrectPageLoaded = async (city: string, page: Page) => {
+    return await page.evaluate((city) => {
+        return document.querySelector('[data-cy="search-listing.heading"]')?.textContent?.includes(city)
+    }, city)
+}
+
 const TIMEOUT_DURATION = 5000
 
-const scrapper = async (pageUrl: string, browser: Browser) => {
+const scrapper = async (city: string, pageUrl: string, browser: Browser) => {
     let sum = 0, n = 0
     let pageNumber = 0
     while (true) {
@@ -45,6 +53,10 @@ const scrapper = async (pageUrl: string, browser: Browser) => {
         console.debug(`Visiting page ${pageNumber}`)
         await page.goto(`${pageUrl}&page=${pageNumber}`)
         console.debug('Loaded page')
+        if (!(await isCorrectPageLoaded(city, page))) {
+            console.error("Page redirected - probably wrong city")
+            break
+        }
         if (pageNumber == 1) {
             try {
                 const button = await page.waitForSelector("#onetrust-accept-btn-handler")
@@ -98,7 +110,7 @@ const saveCityAverage = async (city: string, average: number) => {
     await kv.set(`average_price:rooms:${city}`, average)
 }
 
-const SKIP_LIST = ["Warszawa"]
+const SKIP_LIST = process.env.SKIP_LIST?.split(',') || []
 
 const startScrapping = async () => {
     const universities = await getAllUniversities()
@@ -107,10 +119,11 @@ const startScrapping = async () => {
         if (SKIP_LIST.includes(university.city)) continue
         console.debug(`Scraping ${university.city}`)
         const pageUrl = cityToScrap(university.city)
-        const average = await scrapper(pageUrl, browser)
+        const average = await scrapper(university.city, pageUrl, browser)
         await saveCityAverage(university.city, average)
         console.debug('City scrap finished')
     }
+    await kv.set('last_scrapping', new Date().toISOString())
     console.debug("Scrapping finished")
     await browser.close()
 }
