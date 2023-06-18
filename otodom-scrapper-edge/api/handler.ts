@@ -17,11 +17,11 @@ const getAllUniversities = async (): Promise<University[]> => {
 const getBrowser = () => {
     if (process.env.NODE_ENV === 'production')
         return connect({browserWSEndpoint: `wss://chrome.browserless.io?token=${process.env.BROWSERLESS_TOKEN}`})
-    return launch({headless: false})
+    return launch({headless: true})
 }
 
 const cityToScrap = (city: string) =>
-    `https://www.otodom.pl/pl/oferty/wynajem/pokoj/${city.toLowerCase()}?distanceRadius=0&limit=36&priceMin=1&by=DEFAULT&direction=DESC&viewType=listing`
+    `https://www.otodom.pl/pl/oferty/wynajem/pokoj/${city.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "")}?distanceRadius=0&limit=36&priceMin=1&by=DEFAULT&direction=DESC&viewType=listing`
 
 
 const pageHasCaptcha = (page: Page) => {
@@ -98,10 +98,13 @@ const saveCityAverage = async (city: string, average: number) => {
     await kv.set(`average_price:rooms:${city}`, average)
 }
 
+const SKIP_LIST = ["Warszawa"]
+
 const startScrapping = async () => {
     const universities = await getAllUniversities()
     const browser = await getBrowser()
     for (const university of universities) {
+        if (SKIP_LIST.includes(university.city)) continue
         console.debug(`Scraping ${university.city}`)
         const pageUrl = cityToScrap(university.city)
         const average = await scrapper(pageUrl, browser)
