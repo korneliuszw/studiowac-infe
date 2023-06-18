@@ -1,11 +1,18 @@
 import * as timersPromise from 'timers/promises'
 import {type Browser, connect, launch, type Page} from 'puppeteer'
 
-import universities from "../../university.json" assert {
-        type: "json"
-        };
 import {kv} from "@vercel/kv";
 import {VercelRequest, VercelResponse} from "@vercel/node";
+
+type University = {
+    city: string;
+}
+const getAllUniversities = async (): Promise<University[]> => {
+    const res = await fetch(process.env.UNIVERSITIES_URL, {
+        cache: "no-cache"
+    })
+    return await res.json()
+}
 
 const getBrowser = () => {
     if (process.env.NODE_ENV === 'production')
@@ -92,6 +99,7 @@ const saveCityAverage = async (city: string, average: number) => {
 }
 
 const startScrapping = async () => {
+    const universities = await getAllUniversities()
     const browser = await getBrowser()
     for (const university of universities) {
         console.debug(`Scraping ${university.city}`)
